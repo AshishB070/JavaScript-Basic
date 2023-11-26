@@ -585,3 +585,37 @@ console.log("heyheheh");
 // const values = Object.values(p1);
 //   const entires = Object.entries(p1);
 //   console.log(entires);
+
+// Challange #3==========
+// 1. create food object that contains the name and exp date of the food
+const foods = [
+  {
+    nam: "milk",
+    exp: "2023-11-22",
+  },
+  {
+    nam: "coffee",
+    exp: "2023-12-06",
+  },
+];
+
+// 2. create a function that takes food objects that create above and return one of the following;
+// a) if food expired: ABC is expired 4 days ago
+// b) if not expired: you have 10 days to use this products.
+const check = ({ nam, exp }) => {
+  const today = Date.now();
+  const expire = new Date(exp).getTime();
+  const diff = Math.ceil((expire - today) / (1000 * 60 * 60 * 24));
+
+  if (diff < 1) {
+    const daysago = Math.abs(diff);
+    return `${nam} is expired ${daysago} days ago`;
+  } else {
+    return `You can use ${nam} for ${diff} more days`;
+  }
+};
+
+foods.forEach((item) => {
+  const result = check(item);
+  console.log(result);
+});
